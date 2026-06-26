@@ -1,13 +1,714 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>M.A HASKE TECH HUB</title><style>
-:root{--ink:#101820;--green:#0e6b4e;--gold:#f4b43f;--muted:#66736d;--soft:#f6f4ee;--line:#ddd}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--soft);color:var(--ink)}a{text-decoration:none;color:inherit}header{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 6vw;background:#fff;border-bottom:1px solid var(--line)}.brand{font-weight:900}.brand span{display:inline-grid;place-items:center;width:40px;height:40px;margin-right:8px;border-radius:8px;background:var(--ink);color:#fff}nav{display:flex;gap:18px;font-weight:800;color:var(--muted)}nav a:last-child{padding:10px 14px;border-radius:8px;background:var(--green);color:#fff}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:76vh;padding:70px 6vw;background:linear-gradient(135deg,#101820,#0e6b4e);color:#fff}.hero h1{font-size:clamp(42px,8vw,84px);line-height:.96;margin:0;max-width:760px}.hero p{font-size:19px;line-height:1.6;color:#e9f1ee}.art{height:360px;border:1px solid #ffffff44;border-radius:8px;background:radial-gradient(circle at 70% 20%,#f4b43f88,transparent 25%),linear-gradient(145deg,#ffffff33,#ffffff0f);position:relative}.art:before{content:"";position:absolute;left:12%;top:24%;width:58%;height:36%;border:10px solid #111;border-radius:8px;background:#dce4e0}.art:after{content:"";position:absolute;right:16%;top:20%;width:22%;height:48%;border:8px solid #111;border-radius:22px;background:linear-gradient(160deg,#111,#2f6fbd)}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border:0;border-radius:8px;font-weight:900;cursor:pointer}.primary{background:var(--gold);color:#111}.secondary{background:#fff;color:#111}section{padding:70px 6vw}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card,.product,form,.admin{background:#fff;border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:0 10px 30px #00000012}h2{font-size:clamp(30px,5vw,54px);line-height:1;margin:0 0 18px}.muted{color:var(--muted);line-height:1.7}.toolbar{display:grid;grid-template-columns:1fr 220px;gap:14px;margin:20px 0}label{display:grid;gap:7px;font-weight:800;color:var(--muted)}input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);border-radius:8px;font:inherit}.pill{display:inline-block;margin:10px 6px 10px 0;padding:7px 10px;border-radius:999px;background:#e7f1ed;color:var(--green);font-size:13px;font-weight:900}.used{background:#eef1f5;color:#34495e}.price{font-size:25px;font-weight:900;color:var(--green)}.manage{background:#eaf0e8}.formgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.wide{grid-column:1/-1}.admin{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:12px}.del{background:#b83232;color:#fff}.contact{display:grid;grid-template-columns:1fr 1fr;gap:24px}.status{font-weight:900;color:var(--green)}footer{padding:25px 6vw;background:#fff;border-top:1px solid var(--line);color:var(--muted)}@media(max-width:800px){nav{display:none}.hero,.grid,.toolbar,.formgrid,.contact{grid-template-columns:1fr}.art{height:260px}}
-</style></head><body>
-<header><a class="brand" href="#"><span>MA</span>M.A HASKE TECH HUB</a><nav><a href="#products">Products</a><a href="#manage">Manage</a><a href="#contact">Contact</a><a href="tel:09075433732">Call Now</a></nav></header>
-<main><section class="hero"><div><p>Shop No. 3, Lizafo Plaza, Sabonlayi, Katsina</p><h1>Phones, computers, accessories, and tech support.</h1><p>M.A HASKE TECH HUB helps customers find reliable new and used tech items with clear prices and local support.</p><p><a class="btn primary" href="#products">View Products</a> <a class="btn secondary" href="#manage">Add Product</a></p></div><div class="art" aria-label="Tech product display"></div></section>
-<section id="products"><h2>Available Products</h2><p class="muted">Search products or filter by New and Used items.</p><div class="toolbar"><label>Search<input id="search" placeholder="Search laptop, phone, charger..."></label><label>Condition<select id="filter"><option>All</option><option>New</option><option>Used</option></select></label></div><div class="grid" id="productsGrid"></div></section>
-<section class="manage" id="manage"><h2>Add or Remove Products</h2><form id="form" class="formgrid"><label>Name<input name="name" required placeholder="HP EliteBook"></label><label>Category<select name="cat"><option>Phone</option><option>Laptop</option><option>Accessory</option><option>Repair Part</option><option>Other</option></select></label><label>Price<input name="price" required placeholder="₦180,000"></label><label>Condition<select name="cond"><option>New</option><option>Used</option></select></label><label class="wide">Description<textarea name="desc" required rows="4"></textarea></label><button class="btn primary">Add Product</button></form><div id="admin"></div></section>
-<section class="contact" id="contact"><div><h2>Contact Us</h2><p class="muted">Address: Shop No. 3, Lizafo Plaza, Sabonlayi, Katsina</p><p><b>Phone:</b> 09075433732<br><b>Email:</b> mabdussamad634@gmail.com</p></div><form id="msg"><label>Name<input required></label><label>Message<textarea rows="5" required></textarea></label><button class="btn primary">Prepare Message</button><p class="status" id="status"></p></form></section></main><footer>© 2026 M.A HASKE TECH HUB</footer>
-<script>
-const key="maHaskeProducts";let items=JSON.parse(localStorage.getItem(key)||"null")||[{id:1,name:"HP EliteBook Laptop",cat:"Laptop",price:"₦180,000",cond:"Used",desc:"Clean laptop for school, office work, browsing, and typing."},{id:2,name:"Fast Charger",cat:"Accessory",price:"₦6,500",cond:"New",desc:"Reliable new phone charger for daily use."}];const save=()=>localStorage.setItem(key,JSON.stringify(items));const grid=document.getElementById("productsGrid"),admin=document.getElementById("admin"),search=document.getElementById("search"),filter=document.getElementById("filter");
-function draw(){let q=search.value.toLowerCase(),f=filter.value,shown=items.filter(x=>(f=="All"||x.cond==f)&&JSON.stringify(x).toLowerCase().includes(q));grid.innerHTML=shown.map(x=>`<article class="product"><h3>${x.name}</h3><span class="pill">${x.cat}</span><span class="pill ${x.cond=="Used"?"used":""}">${x.cond}</span><p class="price">${x.price}</p><p class="muted">${x.desc}</p></article>`).join("")||"<p>No products found.</p>";admin.innerHTML=items.map(x=>`<div class="admin"><div><b>${x.name}</b><p class="muted">${x.cat} • ${x.cond} • ${x.price}</p></div><button class="btn del" onclick="removeItem(${x.id})">Remove</button></div>`).join("")}
-function removeItem(id){items=items.filter(x=>x.id!==id);save();draw()}document.getElementById("form").onsubmit=e=>{e.preventDefault();let d=new FormData(e.target);items.unshift({id:Date.now(),name:d.get("name"),cat:d.get("cat"),price:d.get("price"),cond:d.get("cond"),desc:d.get("desc")});save();e.target.reset();draw()};search.oninput=draw;filter.onchange=draw;document.getElementById("msg").onsubmit=e=>{e.preventDefault();status.textContent="Message ready. Call 09075433732 or email mabdussamad634@gmail.com.";e.target.reset()};draw();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>M.A HASKE TECH HUB | Phones & Accessories</title>
+  <meta name="description" content="Shop phones, covers, chargers, power banks, accessories, repairs, and tech support at M.A HASKE TECH HUB in Katsina.">
+  <style>
+    :root {
+      --ink: #17201d;
+      --paper: #fbf8ef;
+      --card: #fffdf7;
+      --line: #ded6c5;
+      --green: #0d664f;
+      --green-2: #174c42;
+      --gold: #d99a2b;
+      --clay: #b66a4a;
+      --blue: #315a7c;
+      --muted: #70695e;
+      --shadow: 0 18px 45px rgba(23, 32, 29, .13);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      background:
+        linear-gradient(90deg, rgba(23,32,29,.045) 1px, transparent 1px) 0 0 / 42px 42px,
+        linear-gradient(rgba(23,32,29,.035) 1px, transparent 1px) 0 0 / 42px 42px,
+        var(--paper);
+      color: var(--ink);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    .topbar {
+      background: var(--ink);
+      color: #fff7df;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 9px 5vw;
+      font-size: 14px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 15px 5vw;
+      background: rgba(251, 248, 239, .93);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff;
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,.16);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 900;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(23,32,29,.14); }
+    .primary { background: var(--gold); color: #1c1609; }
+    .dark { background: var(--green); color: #fff; }
+    .ghost { border-color: var(--line); background: rgba(255,255,255,.55); color: var(--ink); }
+    .danger { background: #9f3f36; color: #fff; }
+
+    .hero {
+      min-height: calc(100vh - 107px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, .82fr);
+      gap: 36px;
+      align-items: center;
+      padding: 62px 5vw 44px;
+      background:
+        radial-gradient(circle at 78% 20%, rgba(217,154,43,.32), transparent 28%),
+        linear-gradient(135deg, #173b33 0%, #17201d 68%);
+      color: #fff8e8;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 9px;
+      align-items: center;
+      margin: 0 0 18px;
+      color: #efd9a1;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 13px;
+    }
+
+    h1, h2, h3 { margin: 0; line-height: .98; }
+    h1 {
+      max-width: 860px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 900;
+    }
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5.4vw, 64px);
+      max-width: 760px;
+    }
+    h3 { font-size: 21px; }
+
+    .lead {
+      max-width: 710px;
+      color: rgba(255,248,232,.82);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.55;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+
+    .hero-panel {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 8px;
+      background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
+      box-shadow: 0 26px 70px rgba(0,0,0,.3);
+      overflow: hidden;
+    }
+    .phone-visual {
+      position: absolute;
+      width: 42%;
+      min-width: 172px;
+      aspect-ratio: 9 / 18;
+      right: 12%;
+      top: 10%;
+      border: 10px solid #111815;
+      border-radius: 34px;
+      background: linear-gradient(160deg, #efe4c7, #6aa48a 52%, #173b33);
+      box-shadow: -22px 26px 45px rgba(0,0,0,.35);
+    }
+    .phone-visual::before {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      width: 58px;
+      height: 7px;
+      border-radius: 999px;
+      background: #111815;
+      transform: translateX(-50%);
+    }
+    .accessory-stack {
+      position: absolute;
+      left: 9%;
+      bottom: 11%;
+      width: 58%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      transform: rotate(-5deg);
+    }
+    .mini-product {
+      min-height: 112px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 8px;
+      background: rgba(255,253,247,.92);
+      color: var(--ink);
+      padding: 15px;
+      box-shadow: 0 15px 26px rgba(0,0,0,.24);
+    }
+    .mini-product span { display: block; color: var(--green); font-weight: 900; margin-top: 9px; }
+
+    section { padding: 78px 5vw; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .muted { color: var(--muted); line-height: 1.7; }
+    .section-head .muted { max-width: 520px; margin: 0; }
+
+    .category-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: -22px;
+      position: relative;
+      z-index: 2;
+    }
+    .category-card, .product, .panel, form, .cart-line {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .category-card {
+      padding: 21px;
+      min-height: 136px;
+    }
+    .category-card svg { width: 38px; height: 38px; color: var(--green); margin-bottom: 17px; }
+
+    .shop-tools {
+      display: grid;
+      grid-template-columns: 1fr 170px 170px;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    label { display: grid; gap: 7px; color: var(--muted); font-size: 14px; font-weight: 900; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffefa;
+      color: var(--ink);
+      padding: 13px 14px;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(13,102,79,.15); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .product {
+      position: relative;
+      padding: 18px;
+      display: grid;
+      gap: 13px;
+      min-height: 334px;
+    }
+    .product-art {
+      display: grid;
+      place-items: center;
+      min-height: 130px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(13,102,79,.12), rgba(217,154,43,.18));
+      color: var(--green-2);
+    }
+    .product-art svg { width: 76px; height: 76px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: #efe7d7;
+      color: var(--green-2);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .price {
+      color: var(--green);
+      font-size: 25px;
+      font-weight: 900;
+    }
+    .product-actions { display: grid; grid-template-columns: 1fr 46px; gap: 9px; align-self: end; }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, .55fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .cart-box, .service-grid { display: grid; gap: 12px; }
+    .cart-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      box-shadow: none;
+    }
+    .qty { display: inline-flex; align-items: center; gap: 7px; }
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffefa;
+      cursor: pointer;
+      font-weight: 900;
+    }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 0;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .panel { padding: 22px; }
+    .service {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 13px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.55);
+    }
+    .service svg { color: var(--clay); width: 34px; height: 34px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+    .wide { grid-column: 1 / -1; }
+    .hidden-field { display: none; }
+    .status {
+      min-height: 24px;
+      margin: 12px 0 0;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .contact-band {
+      background: var(--ink);
+      color: #fff8e8;
+    }
+    .contact-band .muted { color: rgba(255,248,232,.72); }
+    .contact-band form { background: rgba(255,253,247,.08); border-color: rgba(255,255,255,.18); box-shadow: none; }
+    .contact-band input, .contact-band textarea { background: rgba(255,255,255,.95); }
+    .contact-list { display: grid; gap: 12px; margin-top: 18px; font-weight: 900; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 5vw;
+      border-top: 1px solid var(--line);
+      background: #fffdf7;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      nav { display: none; }
+      .hero, .split { grid-template-columns: 1fr; }
+      .hero-panel { min-height: 390px; }
+      .category-strip, .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .shop-tools { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .topbar, footer { flex-direction: column; }
+      .hero { padding-top: 44px; }
+      .category-strip, .products-grid, .form-grid { grid-template-columns: 1fr; }
+      .hero-panel { min-height: 340px; }
+      .accessory-stack { width: 70%; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span>Shop No. 3, Lizafo Plaza, Sabonlayi, Katsina</span>
+    <span>Call or WhatsApp: 09075433732</span>
+  </div>
+
+  <header>
+    <a class="brand" href="#top" aria-label="M.A HASKE TECH HUB home"><span class="logo">MA</span><span>M.A HASKE TECH HUB</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#products">Products</a>
+      <a href="#cart">Cart</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a class="btn dark" href="tel:09075433732">Call Now</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Phones • Covers • Chargers • Power Banks</p>
+        <h1>Reliable phones and accessories, ready from Katsina.</h1>
+        <p class="lead">Buy new and clean used phones, protective covers, fast chargers, earbuds, screen guards, memory cards, and power banks with clear local support.</p>
+        <div class="actions">
+          <a class="btn primary" href="#products">Shop Products</a>
+          <a class="btn ghost" href="https://wa.me/2349075433732">Message on WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Phone and accessory display">
+        <div class="phone-visual"></div>
+        <div class="accessory-stack">
+          <div class="mini-product">Fast Chargers<span>USB-C & iPhone</span></div>
+          <div class="mini-product">Power Banks<span>10,000mAh+</span></div>
+          <div class="mini-product">Phone Covers<span>Strong protection</span></div>
+          <div class="mini-product">Screen Guards<span>Glass finish</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Shop categories">
+      <div class="category-strip">
+        <article class="category-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          <h3>Phones</h3>
+          <p class="muted">Android and iPhone options for daily use, school, business, and content.</p>
+        </article>
+        <article class="category-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+          <h3>Covers</h3>
+          <p class="muted">Clear, leather, silicone, and rugged cases for popular phone models.</p>
+        </article>
+        <article class="category-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7v5a5 5 0 0 0 10 0V7"/><path d="M9 2v5M15 2v5M12 17v5"/></svg>
+          <h3>Chargers</h3>
+          <p class="muted">Adapters and cables selected for charging speed and daily durability.</p>
+        </article>
+        <article class="category-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2M7 11h5"/></svg>
+          <h3>Power Banks</h3>
+          <p class="muted">Portable backup power for travel, work, school, and outages.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" style="color:var(--green)">Current Stock</p>
+          <h2>Shop products</h2>
+        </div>
+        <p class="muted">Use search and filters to find items. Add products to the cart, then send an order request with your details.</p>
+      </div>
+      <div class="shop-tools">
+        <label>Search products<input id="search" placeholder="Search Tecno, charger, cover..."></label>
+        <label>Category<select id="categoryFilter"><option value="All">All</option><option>Phones</option><option>Covers</option><option>Chargers</option><option>Power Banks</option><option>Accessories</option></select></label>
+        <label>Condition<select id="conditionFilter"><option value="All">All</option><option>New</option><option>Used</option></select></label>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <section id="cart">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" style="color:var(--green)">Order Desk</p>
+          <h2>Your cart</h2>
+        </div>
+        <p class="muted">Submitting the form sends the order details through Netlify Forms. The WhatsApp button also prepares a quick message.</p>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <div class="cart-box" id="cartItems"></div>
+          <div class="total"><span>Total</span><span id="cartTotal">₦0</span></div>
+          <div class="actions">
+            <button class="btn ghost" id="clearCart" type="button">Clear Cart</button>
+            <a class="btn dark" id="whatsappOrder" href="https://wa.me/2349075433732">Order on WhatsApp</a>
+          </div>
+        </div>
+        <form id="orderForm" name="order" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="order">
+          <p class="hidden-field"><label>Leave this empty <input name="bot-field"></label></p>
+          <div class="form-grid">
+            <label>Name<input name="name" required placeholder="Your name"></label>
+            <label>Phone<input name="phone" required placeholder="090..."></label>
+            <label class="wide">Delivery or pickup note<textarea name="note" rows="3" placeholder="Pickup at shop, delivery location, or questions"></textarea></label>
+            <label class="wide">Order details<textarea id="orderDetails" name="order_details" rows="5" readonly></textarea></label>
+          </div>
+          <button class="btn primary" type="submit">Send Order Request</button>
+          <p class="status" id="orderStatus"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" style="color:var(--green)">Support</p>
+          <h2>More than sales</h2>
+        </div>
+        <p class="muted">Customers can ask for setup help, accessory matching, and basic repair support before or after purchase.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.4-3.4a6 6 0 0 1-7.9 7.9l-6 6a2.1 2.1 0 0 1-3-3l6-6a6 6 0 0 1 7.9-7.9z"/></svg>
+          <div><h3>Repair guidance</h3><p class="muted">Bring phone issues for diagnosis, screen guard fitting, charging problems, and accessory recommendations.</p></div>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          <div><h3>Phone setup</h3><p class="muted">Assistance with accounts, file transfer, SIM setup, app installation, and first-time device checks.</p></div>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+          <div><h3>Accessory matching</h3><p class="muted">Find the right cover, charger, cable, power bank, memory card, or screen guard for your model.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Visit or message</p>
+          <h2>Contact M.A HASKE TECH HUB</h2>
+          <p class="lead">Send a message for prices, stock confirmation, delivery questions, or phone recommendations.</p>
+          <div class="contact-list">
+            <span>Address: Shop No. 3, Lizafo Plaza, Sabonlayi, Katsina</span>
+            <span>Phone: 09075433732</span>
+            <span>Email: mabdussamad634@gmail.com</span>
+          </div>
+        </div>
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p class="hidden-field"><label>Leave this empty <input name="bot-field"></label></p>
+          <div class="form-grid">
+            <label>Name<input name="name" required></label>
+            <label>Phone or email<input name="contact" required></label>
+            <label class="wide">Message<textarea name="message" rows="5" required></textarea></label>
+          </div>
+          <button class="btn primary" type="submit">Send Message</button>
+          <p class="status" id="contactStatus"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 M.A HASKE TECH HUB</span>
+    <span>Phones, covers, chargers, power banks, accessories, and support.</span>
+  </footer>
+
+  <script>
+    const money = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 });
+    const products = [
+      { id: 1, name: "Tecno Spark 20", category: "Phones", condition: "New", price: 154000, desc: "Large display, dependable battery, and storage for everyday apps.", icon: "phone" },
+      { id: 2, name: "iPhone XR Clean UK Used", category: "Phones", condition: "Used", price: 238000, desc: "Neat used iPhone with Face ID, camera check, and charger option.", icon: "phone" },
+      { id: 3, name: "Samsung Galaxy A15", category: "Phones", condition: "New", price: 218500, desc: "Bright screen, long battery, and smooth Android performance.", icon: "phone" },
+      { id: 4, name: "Clear Shockproof Cover", category: "Covers", condition: "New", price: 3500, desc: "Transparent case with corner protection for popular Android models.", icon: "case" },
+      { id: 5, name: "Leather Flip Cover", category: "Covers", condition: "New", price: 5200, desc: "Wallet-style cover with magnetic flap and firm edge protection.", icon: "case" },
+      { id: 6, name: "20W Fast Charger", category: "Chargers", condition: "New", price: 8500, desc: "Fast wall adapter for supported iPhone and Android devices.", icon: "charger" },
+      { id: 7, name: "Type-C Cable", category: "Chargers", condition: "New", price: 2800, desc: "Durable charging and data cable for Type-C phones and accessories.", icon: "charger" },
+      { id: 8, name: "Oraimo 20,000mAh Power Bank", category: "Power Banks", condition: "New", price: 28500, desc: "High-capacity backup power for travel, work, and outages.", icon: "battery" },
+      { id: 9, name: "10,000mAh Slim Power Bank", category: "Power Banks", condition: "New", price: 17500, desc: "Pocket-friendly backup battery with dual USB output.", icon: "battery" },
+      { id: 10, name: "Tempered Glass Screen Guard", category: "Accessories", condition: "New", price: 2200, desc: "Clear glass protector with fitting support at the shop.", icon: "accessory" },
+      { id: 11, name: "Bluetooth Earbuds", category: "Accessories", condition: "New", price: 14500, desc: "Wireless earbuds for calls, music, study, and travel.", icon: "accessory" },
+      { id: 12, name: "Memory Card 64GB", category: "Accessories", condition: "New", price: 7600, desc: "Extra phone storage for photos, videos, music, and files.", icon: "accessory" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem("mahCart") || "{}");
+    const grid = document.getElementById("productsGrid");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const orderDetails = document.getElementById("orderDetails");
+    const whatsappOrder = document.getElementById("whatsappOrder");
+    const search = document.getElementById("search");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const conditionFilter = document.getElementById("conditionFilter");
+
+    function icon(type) {
+      const icons = {
+        phone: '<rect x="7" y="2" width="10" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2"/>',
+        case: '<path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h3" stroke="currentColor" stroke-width="2"/>',
+        charger: '<path d="M8 3v5M16 3v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3" fill="none" stroke="currentColor" stroke-width="2"/>',
+        battery: '<rect x="3" y="7" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 11v2M7 12h6" stroke="currentColor" stroke-width="2"/>',
+        accessory: '<circle cx="8" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 12h1" stroke="currentColor" stroke-width="2"/>'
+      };
+      return `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[type]}</svg>`;
+    }
+
+    function saveCart() {
+      localStorage.setItem("mahCart", JSON.stringify(cart));
+    }
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      saveCart();
+      renderCart();
+    }
+
+    function changeQty(id, amount) {
+      cart[id] = (cart[id] || 0) + amount;
+      if (cart[id] <= 0) delete cart[id];
+      saveCart();
+      renderCart();
+    }
+
+    function renderProducts() {
+      const q = search.value.trim().toLowerCase();
+      const cat = categoryFilter.value;
+      const cond = conditionFilter.value;
+      const shown = products.filter(item => {
+        const text = `${item.name} ${item.category} ${item.condition} ${item.desc}`.toLowerCase();
+        return (!q || text.includes(q)) && (cat === "All" || item.category === cat) && (cond === "All" || item.condition === cond);
+      });
+      grid.innerHTML = shown.map(item => `
+        <article class="product">
+          <div class="product-art">${icon(item.icon)}</div>
+          <div class="tag-row"><span class="tag">${item.category}</span><span class="tag">${item.condition}</span></div>
+          <h3>${item.name}</h3>
+          <p class="muted">${item.desc}</p>
+          <div class="price">${money.format(item.price)}</div>
+          <div class="product-actions">
+            <button class="btn dark" type="button" onclick="addToCart(${item.id})">Add to Cart</button>
+            <a class="btn ghost" aria-label="Ask about ${item.name}" href="https://wa.me/2349075433732?text=${encodeURIComponent("Hello M.A HASKE TECH HUB, is " + item.name + " available?")}">?</a>
+          </div>
+        </article>
+      `).join("") || '<div class="panel"><h3>No products found</h3><p class="muted">Try another search or choose all categories.</p></div>';
+    }
+
+    function orderText(lines, total) {
+      if (!lines.length) return "No products selected yet.";
+      return `${lines.join("\n")}\nTotal: ${money.format(total)}`;
+    }
+
+    function renderCart() {
+      const lines = [];
+      let total = 0;
+      const selected = Object.entries(cart).map(([id, qty]) => ({ item: products.find(product => product.id === Number(id)), qty })).filter(row => row.item);
+      if (!selected.length) {
+        cartItems.innerHTML = '<div class="cart-line"><div><strong>Your cart is empty</strong><p class="muted">Add phones or accessories from the shop section.</p></div></div>';
+      } else {
+        cartItems.innerHTML = selected.map(({ item, qty }) => {
+          const lineTotal = item.price * qty;
+          total += lineTotal;
+          lines.push(`${qty} x ${item.name} - ${money.format(lineTotal)}`);
+          return `
+            <div class="cart-line">
+              <div><strong>${item.name}</strong><p class="muted">${money.format(item.price)} each</p></div>
+              <div class="qty">
+                <button class="icon-btn" type="button" onclick="changeQty(${item.id}, -1)">-</button>
+                <strong>${qty}</strong>
+                <button class="icon-btn" type="button" onclick="changeQty(${item.id}, 1)">+</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+      cartTotal.textContent = money.format(total);
+      orderDetails.value = orderText(lines, total);
+      whatsappOrder.href = `https://wa.me/2349075433732?text=${encodeURIComponent("Hello M.A HASKE TECH HUB, I want to order:\n" + orderDetails.value)}`;
+    }
+
+    async function submitNetlifyForm(form, status) {
+      status.textContent = "Sending...";
+      try {
+        const response = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+        if (!response.ok) throw new Error("Form submission failed");
+        status.textContent = "Message sent. We will contact you soon.";
+        form.reset();
+        renderCart();
+      } catch (error) {
+        status.textContent = "Could not send online. Please call or WhatsApp 09075433732.";
+      }
+    }
+
+    document.getElementById("clearCart").addEventListener("click", () => {
+      cart = {};
+      saveCart();
+      renderCart();
+    });
+    document.getElementById("orderForm").addEventListener("submit", event => {
+      event.preventDefault();
+      if (!Object.keys(cart).length) {
+        document.getElementById("orderStatus").textContent = "Add at least one product before sending an order.";
+        return;
+      }
+      submitNetlifyForm(event.currentTarget, document.getElementById("orderStatus"));
+    });
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+      submitNetlifyForm(event.currentTarget, document.getElementById("contactStatus"));
+    });
+    [search, categoryFilter, conditionFilter].forEach(control => control.addEventListener("input", renderProducts));
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>

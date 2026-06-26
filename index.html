@@ -72,10 +72,10 @@
       width: 52px;
       height: 52px;
       border-radius: 8px;
-      border: 2px solid rgba(217, 134, 34, .75);
-      object-fit: cover;
-      object-position: 21% 48%;
-      background: var(--blue);
+      border: 2px solid rgba(217, 134, 34, .55);
+      object-fit: contain;
+      padding: 3px;
+      background: #fff8e8;
       box-shadow: 0 10px 24px rgba(21,24,28,.16);
     }
 
@@ -167,15 +167,36 @@
       box-shadow: 0 26px 70px rgba(0,0,0,.3);
       overflow: hidden;
     }
-    .brand-card {
+    .hero-logo {
       position: absolute;
-      inset: 34px 28px auto;
-      height: 210px;
+      inset: 34px auto auto 34px;
+      width: min(46%, 230px);
+      aspect-ratio: 1;
       border-radius: 8px;
       border: 1px solid rgba(255,255,255,.32);
-      object-fit: cover;
-      object-position: center;
+      background: #fff8e8;
+      padding: 12px;
       box-shadow: 0 22px 42px rgba(0,0,0,.32);
+    }
+    .brand-lockup {
+      position: absolute;
+      left: 34px;
+      top: 282px;
+      display: grid;
+      gap: 8px;
+      max-width: 58%;
+    }
+    .brand-lockup strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1;
+    }
+    .brand-lockup span {
+      color: rgba(255,248,232,.74);
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
     }
     .phone-visual {
       position: absolute;
@@ -415,7 +436,8 @@
       nav { display: none; }
       .hero, .split { grid-template-columns: 1fr; }
       .hero-panel { min-height: 390px; }
-      .brand-card { height: 160px; }
+      .hero-logo { width: 170px; }
+      .brand-lockup { top: 230px; max-width: 54%; }
       .category-strip, .products-grid { grid-template-columns: repeat(2, 1fr); }
       .shop-tools { grid-template-columns: 1fr; }
     }
@@ -424,7 +446,8 @@
       .hero { padding-top: 44px; }
       .category-strip, .products-grid, .form-grid { grid-template-columns: 1fr; }
       .hero-panel { min-height: 340px; }
-      .brand-card { inset: 20px 18px auto; height: 120px; }
+      .hero-logo { inset: 20px auto auto 18px; width: 124px; padding: 8px; }
+      .brand-lockup { left: 18px; top: 164px; max-width: 48%; }
       .phone-visual { top: 33%; }
       .accessory-stack { width: 70%; }
       .btn { width: 100%; }
@@ -438,7 +461,7 @@
   </div>
 
   <header>
-    <a class="brand" href="#top" aria-label="M.A HASKE TECH HUB home"><img class="logo" src="assets/brand-card.jpg" alt="M.A HASKE TECH HUB logo"><span>M.A HASKE TECH HUB</span></a>
+    <a class="brand" href="#top" aria-label="M.A HASKE TECH HUB home"><img class="logo" src="assets/mah-logo.svg" alt="M.A HASKE TECH HUB logo"><span>M.A HASKE TECH HUB</span></a>
     <nav aria-label="Main navigation">
       <a href="#products">Products</a>
       <a href="#cart">Cart</a>
@@ -460,7 +483,8 @@
         </div>
       </div>
       <div class="hero-panel" aria-label="Phone and accessory display">
-        <img class="brand-card" src="assets/brand-card.jpg" alt="M.A HASKE TECH HUB business card">
+        <img class="hero-logo" src="assets/mah-logo.svg" alt="M.A HASKE TECH HUB logo">
+        <div class="brand-lockup"><strong>M.A HASKE</strong><span>Tech Hub</span></div>
         <div class="phone-visual"></div>
         <div class="accessory-stack">
           <div class="mini-product">Fast Chargers<span>USB-C & iPhone</span></div>
